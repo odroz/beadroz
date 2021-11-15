@@ -15,17 +15,20 @@
              "<span>"+concerts[i].Date+"</span>"+
              "<p>"+
                "<b class='bi bi-geo-alt'></b><strong> "+concerts[i].lieu+"</strong></br>"+
-               concerts[i].Description+
-           "</p>"+
-           "</div>"+
-         "</div>"
+               concerts[i].Description;
+
+           if(concerts[i].link){
+             concertHTML +="</br><a href='"+concerts[i].link+"'target='_blank'>"+concerts[i].textLink+"</a>'";
+           }
+           concertHTML +="</p></div>"+
+         "</div>";
        }
        console.log(concerts);
        document.getElementById("dateConcerts").innerHTML = concertHTML;
 
      }
     };
-    xhttp.open("GET", "https://script.googleusercontent.com/macros/echo?user_content_key=fZ5dJsNlWqR4PgOsbECxSJnLdXwm2BJs21nC0jA2S4g3t41GKLOa4b5nma4_OIJevg3YSo4GD-qqX43o5_WoAIqGGCXMv-QQm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnHhtoqoLXwkuhvED6vyudHYQ2ePWQuc3P1lkKXJXF45CXWv5n-OhMUyotqgNSZf10sbW8cd7J85M34LjX4lMvR69gUYYOVDQuQ&lib=Mo9eM7mmNuhLIIqbbQTu2tmXl3gJVnX-m", true);
+    xhttp.open("GET", "https://script.google.com/macros/s/AKfycbwElIoR_5xje643L20iu-xQbFTl-Ge97HVr5mpLMeA4xi7JhUPizAndDCAUWizCTtcl/exec", true);
     xhttp.send();
   }
 window.onload = getConcerts();
