@@ -1,5 +1,5 @@
 
-
+const googleScript = "https://script.google.com/macros/s/AKfycbwYQkiPvyHpVaZ9ffF7mekI-W-EZufvUmJrXl3y6kDeDc2tA7aK-A9enGencR1Hv1aB/exec";
   const getConcerts = function(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -13,12 +13,17 @@
              "<i class='bi bi-calendar3-event'></i>"+
 
              "<span>"+concerts[i].Date+"</span>"+
-             "<p>"+
-               "<b class='bi bi-geo-alt'></b><strong> "+concerts[i].lieu+"</strong></br>"+
+             "<p>";
+             if(concerts[i].googleMaps){
+              concertHTML+="<a href='"+concerts[i].googleMaps+"' target='_blank'><b class='bi bi-geo-alt'></b></a>";
+            }else{
+               concertHTML+="<b class='bi bi-geo-alt'></b>";
+             }
+               concertHTML+="<strong> "+concerts[i].lieu+"</strong></br>"+
                concerts[i].Description;
 
            if(concerts[i].link){
-             concertHTML +="</br><a href='"+concerts[i].link+"'target='_blank'>"+concerts[i].textLink+"</a>'";
+             concertHTML +="</br><a href='"+concerts[i].link+"' target='_blank'>"+concerts[i].textLink+"</a>";
            }
            concertHTML +="</p></div>"+
          "</div>";
@@ -28,7 +33,7 @@
 
      }
     };
-    xhttp.open("GET", "https://script.google.com/macros/s/AKfycbwElIoR_5xje643L20iu-xQbFTl-Ge97HVr5mpLMeA4xi7JhUPizAndDCAUWizCTtcl/exec", true);
+    xhttp.open("GET", googleScript, true);
     xhttp.send();
   }
 window.onload = getConcerts();
