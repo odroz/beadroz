@@ -1,5 +1,5 @@
 
-const googleScript = "https://script.google.com/macros/s/AKfycbxZJq3x1wpZCn0AB2Yym0OSfcL-hyZq_Lcf6CoybmDbgM1sakx04Y--IClPj_XaFPkv/exec";
+const googleScript = "https://script.google.com/macros/s/AKfycbxEchrucJMUUUUSvvuED9xVsnJmBAP3VYI_PhnqBsYpVQc_Tr2iPlhrduE0QLsGS1Sj/exec";
   const displayConcerts = function(concerts){
        var concertHTML = "";
        var icons = ["bi bi-calendar-event","bi bi-calendar-range", "bi bi-calendar-week" ]
@@ -66,6 +66,15 @@ const displayRepertoire = function(repertoire){
  document.getElementById("repertoire").innerHTML = repertoireHTML;
 };
 
+const displayTextes = function(textes){
+  textes.forEach(function(t){
+    document.getElementById(t.section+"-title").innerHTML = t.titre;
+    if(t.texte){
+    document.getElementById(t.section+"-texte").innerHTML = t.texte;
+  }
+  });
+}
+
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
@@ -80,6 +89,8 @@ const getData = function(){
                     case 0: displayConcerts(data[0]);
                       break;
                     case 1: displayRepertoire(data[1]);
+                      break;
+                    case 2: displayTextes(data[2]);
                       break;
                     }
                   }
