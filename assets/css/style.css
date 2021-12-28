@@ -1020,4 +1020,8 @@ section {
   padding-top: 8px;
   text-align: center;
   font-size: 13px;
+  color: lightgray;
+}
+#footer a {
+  color: lightgray;
 }

@@ -1,5 +1,8 @@
 
-const googleScript = "https://script.google.com/macros/s/AKfycbxEchrucJMUUUUSvvuED9xVsnJmBAP3VYI_PhnqBsYpVQc_Tr2iPlhrduE0QLsGS1Sj/exec";
+
+
+
+
   const displayConcerts = function(concerts){
        var concertHTML = "";
        var icons = ["bi bi-calendar-event","bi bi-calendar-range", "bi bi-calendar-week" ]
@@ -68,15 +71,70 @@ const displayRepertoire = function(repertoire){
 
 const displayTextes = function(textes){
   textes.forEach(function(t){
-    document.getElementById(t.section+"-title").innerHTML = t.titre;
-    if(t.texte){
-    document.getElementById(t.section+"-texte").innerHTML = t.texte;
-  }
+    var section = document.getElementById(t.section+"-title")
+    if(section){
+        section.innerHTML = t.titre;
+        if(t.texte){
+            document.getElementById(t.section+"-texte").innerHTML = t.texte;
+        }
+    }else{
+        document.getElementById(t.section).innerHTML = t.texte;
+    }
   });
+}
+
+const displayTestimonials = function(testimonials){
+    var testimonialsHTML="";
+    testimonials.forEach(function(t, i){
+        testimonialsHTML+='<div class="swiper-slide">'+
+              '<div class="testimonial-item">'+
+                '<p>'+
+                  '<i class="bx bxs-quote-alt-left quote-icon-left"></i>';
+                if(t.titre){
+                  testimonialsHTML+='<strong>'+t.titre+'</strong><br>';
+                }
+                 testimonialsHTML+=t.temoignage+
+                  '<i class="bx bxs-quote-alt-right quote-icon-right"></i>'+
+                '</p>'+
+                '<!--<img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">-->'+
+                '<h3>'+t.provenance+'</h3>'+
+                '<h4>'+t.date+'</h4>'+
+              '</div>'+
+            '</div>';
+    });
+    document.getElementById("testimonial-swiper").innerHTML = testimonialsHTML;
 }
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
+}
+
+function getLangScript(){
+    
+    var googleScript ="https://script.google.com/macros/s/AKfycbxbHSF1JzkD6PhRvQ3Sbpe0GCZmZL5a1x7blrw45uUZ0x4-lnscwmvPCh-BDCBtmrCS/exec";
+    switch(userLang){
+        case "fr":
+        case "fr-BE":
+        case "fr-CA":
+        case "fr-CH":
+        case "fr-LU": 
+            googleScript += "?lang=fr";
+            break;
+        case "de":
+        case "de-CH":
+        case "de-AT":
+        case "de-LU":
+        case "de-LI":
+            googleScript += "?lang=de";
+            break;
+        default: 
+            googleScript += "?lang=de";
+        }
+    return googleScript;
+}
+function setLang(lang){
+    userLang = lang;
+    getData();
 }
 
 const getData = function(){
@@ -92,13 +150,18 @@ const getData = function(){
                       break;
                     case 2: displayTextes(data[2]);
                       break;
+                    case 3: displayTestimonials(data[3]);
+                      break;
                     }
                   }
               );
    }
  }
-   xhttp.open("GET", googleScript, true);
-   xhttp.send();
-}
 
+
+    var googleScript = getLangScript();
+    xhttp.open("GET", googleScript, true);
+    xhttp.send();
+}
+var userLang = navigator.language || navigator.userLanguage; 
 window.onload = getData();
