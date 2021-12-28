@@ -128,7 +128,7 @@ function getLangScript(){
             googleScript += "?lang=de";
             break;
         default: 
-            googleScript += "?lang=de";
+            googleScript += "?lang=fr";
         }
     return googleScript;
 }
