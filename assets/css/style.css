@@ -110,7 +110,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar li {
   position: relative;
 }
-.navbar a, .navbar a:focus {
+.navbar a, .navbar a:focus{
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -146,7 +146,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar .dropdown ul li {
   min-width: 200px;
 }
-.navbar .dropdown ul a {
+.navbar .dropdown ul a{
   padding: 10px 20px;
   text-transform: none;
 }
