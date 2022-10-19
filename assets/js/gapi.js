@@ -15,17 +15,20 @@
              "<i class='"+icon+"'></i>"+
 
              "<span>"+concerts[i].Date+"</span>"+
-             "<p>";
+             "<p>"+
+             concerts[i].Description+
+             "</p><p>";
+
             if(concerts[i].googleMaps){
-              concertHTML+="<a href='"+concerts[i].googleMaps+"' target='_blank'><b class='bi bi-geo-alt'></b></a>";
+              concertHTML+="<a href='"+concerts[i].googleMaps+"' target='_blank'><b class='bi bi-geo-alt'></b>"+concerts[i].lieu+"</a>";
             }else{
-               concertHTML+="<b class='bi bi-geo-alt'></b>";
+               concertHTML+="<b class='bi bi-geo-alt'></b> "+concerts[i].lieu;
              }
-               concertHTML+="<strong> "+concerts[i].lieu+"</strong></br>"+
-               concerts[i].Description;
+               concertHTML+="</br>";
+
 
            if(concerts[i].link){
-             concertHTML +="</br><a href='"+concerts[i].link+"' target='_blank'>"+concerts[i].textLink+"</a>";
+             concertHTML +="<strong><a href='"+concerts[i].link+"' target='_blank'>"+concerts[i].textLink+"</a></strong>";
            }
            concertHTML +="</p></div>"+
          "</div>";
@@ -52,7 +55,10 @@ const displayRepertoire = function(repertoire){
         if(oeuvre.partie){
           repertoireHTML+='<span>'+oeuvre.partie+'</span>';
         }
-        repertoireHTML+='</li>'
+        if(oeuvre.air){
+          repertoireHTML+='&ensp;<i>'+oeuvre.air+'</i>';
+        }
+        repertoireHTML+='</li>';
       });
       repertoireHTML+='</ul>'+
       '</div>'
@@ -66,6 +72,7 @@ const displayRepertoire = function(repertoire){
     }
 
   });
+
  document.getElementById("repertoire").innerHTML = repertoireHTML;
 };
 
@@ -110,14 +117,14 @@ function getRandomInt(max) {
 }
 
 function getLangScript(){
-    
-    var googleScript ="https://script.google.com/macros/s/AKfycbxbHSF1JzkD6PhRvQ3Sbpe0GCZmZL5a1x7blrw45uUZ0x4-lnscwmvPCh-BDCBtmrCS/exec";
+
+    var googleScript ="https://script.google.com/macros/s/AKfycbzq2xZV2-feRuoxpvukH4UAkeUhoESSDXsS_y7RXKp9MJ2gpoQyDAZ5FAySnj81IKu3/exec";
     switch(userLang){
         case "fr":
         case "fr-BE":
         case "fr-CA":
         case "fr-CH":
-        case "fr-LU": 
+        case "fr-LU":
             googleScript += "?lang=fr";
             break;
         case "de":
@@ -127,7 +134,7 @@ function getLangScript(){
         case "de-LI":
             googleScript += "?lang=de";
             break;
-        default: 
+        default:
             googleScript += "?lang=fr";
         }
     return googleScript;
@@ -163,5 +170,5 @@ const getData = function(){
     xhttp.open("GET", googleScript, true);
     xhttp.send();
 }
-var userLang = navigator.language || navigator.userLanguage; 
+var userLang = navigator.language || navigator.userLanguage;
 window.onload = getData();
