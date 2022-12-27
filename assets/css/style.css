@@ -276,7 +276,7 @@ a:hover {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 75vh;
+  height: 85vh;
   background: url("../img/bea-bg.jpg") top center;
   background-size: cover;
   padding: 0 15px;
@@ -305,10 +305,9 @@ a:hover {
   padding-top: 10px;
   color: #870021;
 }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   #hero {
     background-attachment: fixed;
-    min-height: 500px;
   }
 }
 @media (max-width: 768px) {
