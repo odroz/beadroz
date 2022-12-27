@@ -305,9 +305,10 @@ a:hover {
   padding-top: 10px;
   color: #870021;
 }
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   #hero {
     background-attachment: fixed;
+    min-height: 500px;
   }
 }
 @media (max-width: 768px) {
@@ -456,7 +457,7 @@ section {
 .about .image {
   background: url("../img/bea-profile.jpg") center center no-repeat;
   background-size: cover;
-  min-height: 400px;
+  
 }
 @media (max-width: 991px) {
   .about .image {
