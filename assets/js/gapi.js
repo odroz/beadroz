@@ -33,15 +33,16 @@
            concertHTML +="</p></div>"+
          "</div>";
        }
-       console.log(concerts);
+       //console.log(concerts);
        document.getElementById("dateConcerts").innerHTML = concertHTML;
 
 
     };
 const displayRepertoire = function(repertoire){
+  //console.log(repertoire);
   var repertoireHTML = '';
   repertoire.forEach(function(rep, i){
-    var middle = Math.floor(repertoire.length/2);
+    var middle = Math.floor(repertoire.length/2)-1;
     if(i == 0){
       repertoireHTML+='<div class="col-lg-6">';
     }
