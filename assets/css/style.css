@@ -456,7 +456,7 @@ section {
 .about .image {
   background: url("../img/bea-profile.jpg") center center no-repeat;
   background-size: cover;
-  
+
 }
 @media (max-width: 991px) {
   .about .image {
